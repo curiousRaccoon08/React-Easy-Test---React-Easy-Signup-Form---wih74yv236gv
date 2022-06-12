@@ -1,19 +1,28 @@
 import { useState } from "react";
 import React from "react";
+import { signUpFormValidation } from "./validation.js";
 import "../styles/App.css";
 
 const App = () => {
   const initialValues = { name: "", email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState({});
   const handleChange = (e) => {
     console.log(e.target);
     const { newName, value } = e.target;
     setFormValues({ ...formValues, [newName]: value });
     console.log(formValues);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormErrors(signUpFormValidation(formValues));
+  };
+
   return (
     <div className="container">
-      <form>
+      <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
+      <form onSubmit={handleSubmit}>
         <h1>Login Form</h1>
         <div className="ui form">
           <div className="field">
