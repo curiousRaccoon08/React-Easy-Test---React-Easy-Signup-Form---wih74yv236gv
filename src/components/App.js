@@ -6,7 +6,6 @@ import "../styles/App.css";
 const App = () => {
   const initialValues = { name: "", email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
   const handleChange = (e) => {
     console.log(e.target);
     const { newName, value } = e.target;
